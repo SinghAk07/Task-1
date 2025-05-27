@@ -1,0 +1,85 @@
+
+Task 1: Scan Your Local Network for Open Ports
+
+Objective:
+Learn to discover open ports on devices in your local network to understand network exposure.
+
+Tools:
+- Nmap (used)
+
+
+STEPS:
+1. Nmap installed from official website.
+2. Local IP range identified: 192.168.1.0/24
+3. Scan run with: nmap -sS 192.168.1.0/24
+4. Open ports and IPs recorded.
+5. Researched services associated with open ports.
+6. Identified potential risks.
+
+
+
+Pseudo Scan Results:
+
+Scanning 192.168.1.0/24
+Host: 192.168.1.1
+    - Open Port: 80 (HTTP)
+    - Open Port: 443 (HTTPS)
+    - Open Port: 22 (SSH)
+
+Host: 192.168.1.10
+    - Open Port: 21 (FTP)
+    - Open Port: 139 (NetBIOS)
+
+Host: 192.168.1.15
+    - Open Port: 445 (SMB)
+    - Open Port: 3389 (RDP)
+
+Potential Risks:
+- Port 21 (FTP): Unencrypted credentials.
+- Port 22 (SSH): Brute-force attack risk if weak passwords.
+- Port 445 (SMB): Targeted in ransomware attacks.
+- Port 3389 (RDP): Exposed RDP can be exploited for remote access.
+
+Services and Their Purposes:
+- HTTP/HTTPS: Web server
+- SSH: Secure shell access
+- FTP: File transfer service
+- SMB: File and printer sharing
+- RDP: Remote desktop
+
+Conclusion:
+Basic reconnaissance reveals several potentially risky services exposed.
+
+Nmap Basic Usage and Scan Types:
+
+
+1. TCP SYN Scan (Stealth Scan):
+   - Command: `nmap -sS 192.168.1.0/24`
+   - Description: Sends SYN packets and waits for SYN-ACK to detect open ports without completing the handshake.
+
+2. TCP Connect Scan:
+   - Command: `nmap -sT 192.168.1.0/24`
+   - Description: Performs full TCP handshake. Easier to detect but does not require special privileges.
+
+3. UDP Scan:
+   - Command: `nmap -sU 192.168.1.0/24`
+   - Description: Scans for open UDP ports. Slower but useful for detecting services like DNS, SNMP.
+
+4. Service and Version Detection:
+   - Command: `nmap -sV 192.168.1.0/24`
+   - Description: Tries to determine what service/version is running on open ports.
+
+5. OS Detection:
+   - Command: `nmap -O 192.168.1.0/24`
+   - Description: Attempts to determine the operating system of hosts.
+
+6. Combine Options:
+   - Command: `nmap -sS -sV -O 192.168.1.0/24`
+   - Description: Runs SYN scan with version and OS detection.
+
+7. Save Output:
+   - Command: `nmap -oN scan_results.txt 192.168.1.0/24`
+   - Description: Saves output to a text file.
+
+
+
